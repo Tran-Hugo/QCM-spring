@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Dic 19, 2022 alle 09:18
+-- Creato il: Dic 19, 2022 alle 09:36
 -- Versione del server: 5.7.33
 -- Versione PHP: 7.4.19
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `qcm` (
   `id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL
+  `theme` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -40,6 +40,7 @@ CREATE TABLE `qcm` (
 
 CREATE TABLE `question` (
   `id` int(11) NOT NULL,
+  `question` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `id_qcm` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -53,7 +54,7 @@ CREATE TABLE `question` (
 CREATE TABLE `response` (
   `id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
+  `isCorrect` varchar(255) NOT NULL,
   `id_question` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
