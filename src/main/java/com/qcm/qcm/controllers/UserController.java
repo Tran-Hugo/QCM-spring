@@ -15,12 +15,12 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    @GetMapping("/User")
+    @GetMapping("/user")
     public List<User> index(){
         return repository.findAll();
     }
 
-    @GetMapping("/User/{id}")
+    @GetMapping("/user/{id}")
     public User show(@PathVariable String id){
         int UserId = Integer.parseInt(id);
         return repository.findById(UserId).get();
