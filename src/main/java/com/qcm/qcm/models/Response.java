@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Reponse {
+public class Response {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,10 +18,10 @@ public class Reponse {
     @JoinColumn(name="id_question")
     private Question question;
 
-    public Reponse() {
+    public Response() {
     }
 
-    public Reponse(int id, String content, Boolean is_correct, Question question) {
+    public Response(int id, String content, Boolean is_correct, Question question) {
         this.id = id;
         this.content = content;
         this.is_correct = is_correct;
@@ -64,22 +64,22 @@ public class Reponse {
         this.question = question;
     }
 
-    public Reponse id(int id) {
+    public Response id(int id) {
         setId(id);
         return this;
     }
 
-    public Reponse content(String content) {
+    public Response content(String content) {
         setContent(content);
         return this;
     }
 
-    public Reponse is_correct(Boolean is_correct) {
+    public Response is_correct(Boolean is_correct) {
         setIs_correct(is_correct);
         return this;
     }
 
-    public Reponse question(Question question) {
+    public Response question(Question question) {
         setQuestion(question);
         return this;
     }
