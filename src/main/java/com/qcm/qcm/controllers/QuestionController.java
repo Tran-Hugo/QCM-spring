@@ -3,7 +3,6 @@ package com.qcm.qcm.controllers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.qcm.qcm.models.Qcm;
 import com.qcm.qcm.models.Question;
 import com.qcm.qcm.models.Response;
 import com.qcm.qcm.repositories.QuestionRepository;
@@ -23,11 +22,10 @@ public class QuestionController {
     private ResponseRepository ResponseRepo;
 
 
-    @GetMapping("/question/{id}")
+    @GetMapping("/question/{id}/reponses")
     public List<Response> show(@PathVariable String id){
         int questionId = Integer.parseInt(id);
         Question question = repository.findById(questionId).get();
-        System.out.println(question);
         List<Response> Responses = ResponseRepo.findByQuestion(question);
         return Responses;
     }

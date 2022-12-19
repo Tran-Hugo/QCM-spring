@@ -11,7 +11,6 @@ import com.qcm.qcm.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,7 +26,7 @@ public class QcmController {
         return repository.findAll();
     }
 
-    @GetMapping("/qcm/{id}")
+    @GetMapping("/qcm/{id}/questions")
     public List<Question> show(@PathVariable String id){
         int qcmId = Integer.parseInt(id);
         Qcm qcm = repository.findById(qcmId).get();
