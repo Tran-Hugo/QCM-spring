@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Creato il: Dic 19, 2022 alle 09:36
--- Versione del server: 5.7.33
--- Versione PHP: 7.4.19
+-- Host: localhost:3307
+-- Generation Time: Dec 19, 2022 at 09:42 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `qcm`
+-- Table structure for table `qcm`
 --
 
 CREATE TABLE `qcm` (
@@ -35,7 +36,7 @@ CREATE TABLE `qcm` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `question`
+-- Table structure for table `question`
 --
 
 CREATE TABLE `question` (
@@ -48,20 +49,20 @@ CREATE TABLE `question` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `response`
+-- Table structure for table `response`
 --
 
 CREATE TABLE `response` (
   `id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `isCorrect` varchar(255) NOT NULL,
+  `is_correct` tinyint(1) NOT NULL,
   `id_question` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `score`
+-- Table structure for table `score`
 --
 
 CREATE TABLE `score` (
@@ -74,7 +75,7 @@ CREATE TABLE `score` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -83,31 +84,31 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `qcm`
+-- Indexes for table `qcm`
 --
 ALTER TABLE `qcm`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `question`
+-- Indexes for table `question`
 --
 ALTER TABLE `question`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_qcm` (`id_qcm`);
 
 --
--- Indici per le tabelle `response`
+-- Indexes for table `response`
 --
 ALTER TABLE `response`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_question` (`id_question`);
 
 --
--- Indici per le tabelle `score`
+-- Indexes for table `score`
 --
 ALTER TABLE `score`
   ADD PRIMARY KEY (`id`),
@@ -115,63 +116,63 @@ ALTER TABLE `score`
   ADD KEY `fk_id_qcm` (`id_qcm`);
 
 --
--- Indici per le tabelle `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `qcm`
+-- AUTO_INCREMENT for table `qcm`
 --
 ALTER TABLE `qcm`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `question`
+-- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `response`
+-- AUTO_INCREMENT for table `response`
 --
 ALTER TABLE `response`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `score`
+-- AUTO_INCREMENT for table `score`
 --
 ALTER TABLE `score`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `question`
+-- Constraints for table `question`
 --
 ALTER TABLE `question`
   ADD CONSTRAINT `fk_qcm` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`);
 
 --
--- Limiti per la tabella `response`
+-- Constraints for table `response`
 --
 ALTER TABLE `response`
   ADD CONSTRAINT `fk_question` FOREIGN KEY (`id_question`) REFERENCES `question` (`id`);
 
 --
--- Limiti per la tabella `score`
+-- Constraints for table `score`
 --
 ALTER TABLE `score`
   ADD CONSTRAINT `fk_id_qcm` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`),
