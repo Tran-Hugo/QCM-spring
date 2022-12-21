@@ -4,19 +4,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.qcm.qcm.models.Qcm;
-import com.qcm.qcm.models.Question;
 import com.qcm.qcm.models.Score;
 import com.qcm.qcm.models.User;
 import com.qcm.qcm.repositories.ScoreRepository;
 import com.qcm.qcm.repositories.QcmRepository;
-import com.qcm.qcm.repositories.QuestionRepository;
 import com.qcm.qcm.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @RestController
