@@ -19,7 +19,6 @@ public class ResponseController {
 
     @GetMapping("/response/{id}")
     public Response show(@PathVariable String id){
-        System.out.println("test");
         int responseId = Integer.parseInt(id);
         Response response = repository.findById(responseId).get();
         return response;
