@@ -25,11 +25,16 @@ public class ScoreController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/Score/{id_qcm}")
-    public Score show(@PathVariable String id_qcm){
-        int qcmId = Integer.parseInt(id_qcm);
-        Qcm qcm = qcmRepo.findById(qcmId).get();
-        Score score = repository.findByQcm(qcm);
+    @PostMapping("/getScore")
+    public Score get(@RequestBody Map<String, String> body){
+        Qcm qcm = qcmRepo.findById(Integer.parseInt(body.get("id_qcm"))).get();
+        User user = userRepo.findById(Integer.parseInt(body.get("id_user"))).get();
+
+        Score score = repository.findByQcmAndUser(qcm, user);
+        // System.out.println(score);
+        // int qcmId = Integer.parseInt(id_qcm);
+        // Qcm qcm = qcmRepo.findById(qcmId).get();
+        // Score score = repository.findByQcm(qcm);
         
         return score;
     }
@@ -44,7 +49,26 @@ public class ScoreController {
         scoreObj.setScore(score);
         scoreObj.setQcm(qcm);
         scoreObj.setUser(user);
-        return repository.save(scoreObj);
+        // scoreObj = repository.save(scoreObj);
+        // if (scoreObj.getId() == 0) {
+        //     return false;
+        // } else {
+        //     return true;
+        // }
+        return  repository.save(scoreObj);
+    }
+
+    @PutMapping("/score")
+    public Score update(@RequestBody Map<String, String> body){
+        Integer scoreId = Integer.parseInt(body.get("id"));   
+        Integer newScore = Integer.parseInt(body.get("score"));   
+
+        Score score = repository.findById(scoreId).get();
+
+        score.setScore(newScore);
+        repository.save(score);
+
+        return  score;
     }
 
 }

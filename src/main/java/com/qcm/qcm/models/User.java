@@ -2,6 +2,9 @@ package com.qcm.qcm.models;
 
 import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @JsonIgnore
     @OneToMany(targetEntity=Score.class,mappedBy = "score")
     private List<Score> scores;
 

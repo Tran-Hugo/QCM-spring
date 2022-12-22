@@ -23,7 +23,8 @@ public class UserController {
     @GetMapping("/user/{id}")
     public User show(@PathVariable String id){
         int UserId = Integer.parseInt(id);
-        return repository.findById(UserId).get();
+        User userObj = repository.findById(UserId).get();
+        return userObj;
     }
 
 
